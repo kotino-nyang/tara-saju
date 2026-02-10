@@ -125,20 +125,21 @@
 
 
         const Header = () => (
-            <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                    <div className="flex items-center">
-                        <a href="/">
-                            <img 
-    src="https://i.imgur.com/KqW99eT.png" 
-    alt="TARA SAJU" 
-    className="h-8 w-auto" 
-/>
-                        </a>
-                    </div>
-                </div>
-            </header>
-        );
+    <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div className="flex items-center">
+                <a href="/">
+                    {/* 아래 src 주소를 수정했습니다 */}
+                    <img 
+                        src="https://i.imgur.com/sdU9nRt.png" 
+                        alt="TARA SAJU" 
+                        className="h-8 w-auto" 
+                    />
+                </a>
+            </div>
+        </div>
+    </header>
+);
 
         const Hero = ({ onSetIntent }) => (
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -177,13 +178,14 @@
         const ProblemSolution = () => (
     <section className="py-24 px-6 bg-soft-white overflow-hidden">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
-            {/* 좌측 이미지 블록 수정 */}
+            {/* 이미지 블록 */}
             <div className="flex items-center justify-center p-4 rounded-2xl bg-soft-white">
                 <img 
-    src="https://i.imgur.com/BPYe59t.png" 
-    alt="사주 구조 분석 데이터" 
-    className="w-full max-w-sm rounded-2xl drop-shadow-2xl animate-fade-in object-cover" 
-/>
+                    /* 직접 링크 주소인 i.imgur.com/... .png 로 수정했습니다 */
+                    src="https://i.imgur.com/BPYe59t.png" 
+                    alt="사주 구조 분석 데이터" 
+                    className="w-full max-w-sm rounded-2xl drop-shadow-2xl animate-fade-in object-cover" 
+                />
             </div>
             
             <div className="relative flex flex-col justify-center">
