@@ -286,11 +286,15 @@ const Footer = () => (
                     <section id="social" className="py-24 bg-moss overflow-hidden">
                         <div className="animate-scroll">
                             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-                                className="min-w-[350px] min-h-[260px] mx-4 p-8 bg-deep-moss text-sand rounded-2xl border border-sand/20 flex flex-col justify-between"
-                                    <p className="italic mb-4">"{t.content}"</p>
-                                    <div className="text-xs opacity-70">— {t.author}</div>
-                                </div>
-                            ))}
+  <div
+    key={i}
+    className="min-w-[350px] min-h-[260px] mx-4 p-8 bg-deep-moss text-sand rounded-2xl border border-sand/20 flex flex-col justify-between"
+  >
+    <p className="italic mb-4">"{t.content}"</p>
+    <div className="text-xs opacity-70">— {t.author}</div>
+  </div>
+))}
+
                         </div>
                     </section>
                     <ApplicationForm intent={intent} onIntentChange={setIntent} />
@@ -299,7 +303,7 @@ const Footer = () => (
             );
         };
 
-        const Footer: React.FC = () => (
+        const Footer = () => (
   <footer className="bg-soft-white py-16 px-6 border-t border-sand/20 text-moss/70">
     <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-12 text-sm">
       <div className="space-y-6">
