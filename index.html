@@ -197,30 +197,6 @@ const ProblemSolution = () => (
     </div>
 );
 
-const SegmentationBridge = ({ selectedIntent, onSetIntent }) => (
-    <section id="bridge" className="pt-16 pb-20 px-6 bg-[#F2EDE4]"> {/* pt-12 -> pt-16 (ProblemSolution과 간격 확보) */}
-        <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-4xl font-serif mb-3 text-moss">지금 가장 시급한 고민은?</h2>
-                <p className="text-sm text-moss/60">목적에 최적화된 분석 서비스를 만나보세요.</p>
-            </div>
-            
-            {/* 텍스트 블록 */}
-            <div className="relative flex flex-col justify-center order-1 md:order-2">
-                <div className="bg-white border-2 border-sand rounded-3xl p-8 md:p-10 shadow-xl h-full flex flex-col justify-center">
-                   <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-4 w-fit">SOLUTION</div>
-                   <h3 className="text-2xl font-serif mb-4 text-moss font-black">정확한 사주 구조 분석</h3>
-                   <div className="space-y-4 text-moss/80 font-medium leading-relaxed">
-                     <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
-                     <p className="pt-4 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </div> // 이 부분 닫는 태그 확인하세요!
-);
-
-
 
         const SegmentationBridge = ({ selectedIntent, onSetIntent }) => (
     // py-24를 pt-12 pb-24로 변경 (윗부분 여백 절반 감소)
@@ -271,164 +247,81 @@ const SegmentationBridge = ({ selectedIntent, onSetIntent }) => (
 
 
         const ApplicationForm = ({ intent, onIntentChange }) => {
-    const [formData, setFormData] = useState({ 
-        name: '', 
-        gender: 'female', 
-        birthDate: '', 
-        birthTime: 'unknown', 
-        intent: intent || 'life' 
-    });
-    const [agree, setAgree] = useState(false);
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [preview, setPreview] = useState(null);
-
-    useEffect(() => { 
-        if (intent) setFormData(prev => ({ ...prev, intent })); 
-    }, [intent]);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(!agree) {
-            alert("개인정보 수집 및 이용에 동의해주세요.");
-            return;
-        }
-        // 이메일 발송 대신 일단 알림창만 띄움
-        alert(`${formData.name}님의 리포트 신청이 완료되었습니다! 48시간 이내 분석 완료 예정입니다.`);
-    };
-
-
-            return (
-
-                <section id="apply" className="py-24 px-6 bg-soft-white">
-
-                    <div className="max-w-3xl mx-auto">
-
-                        <div className="text-center mb-12">
-
-                            <h2 className="text-4xl font-serif text-moss mb-4">리포트 신청 (입력 1분)</h2>
-
-                        </div>
-
-                        <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-sand/30 space-y-8">
-
-                            <div className="flex gap-4">
-
-                                <button type="button" onClick={() => onIntentChange('life')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'life' ? 'bg-moss text-white border-moss' : 'bg-white border-sand'}`}>종합 사주</button>
-
-                                <button type="button" onClick={() => onIntentChange('romance')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'romance' ? 'bg-sand text-deep-moss border-sand' : 'bg-white border-sand'}`}>연애 특화</button>
-
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-
-                                <input required type="text" placeholder="성함" className="p-3 border rounded-xl outline-moss" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-
-                                <select className="p-3 border rounded-xl outline-moss" value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
-
-                                    <option value="female">여성</option><option value="male">남성</option>
-
-                                </select>
-
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-
-                                <input required type="date" className="p-3 border rounded-xl outline-moss" value={formData.birthDate} onChange={e => setFormData({...formData, birthDate: e.target.value})} />
-
-                                <select className="p-3 border rounded-xl outline-moss" value={formData.birthTime} onChange={e => setFormData({...formData, birthTime: e.target.value})}>
-
-                                    <option value="unknown">모름 (00시 기준 분석)</option>
-
-                                    <option value="00:00">자시 (00:00 ~ 01:30)</option>
-
-                                    <option value="02:00">축시 (01:30 ~ 03:30)</option>
-
-                                    <option value="04:00">인시 (03:30 ~ 05:30)</option>
-
-                                    <option value="06:00">묘시 (05:30 ~ 07:30)</option>
-
-                                    <option value="08:00">진시 (07:30 ~ 09:30)</option>
-
-                                    <option value="10:00">사시 (09:30 ~ 11:30)</option>
-
-                                    <option value="12:00">오시 (11:30 ~ 13:30)</option>
-
-                                    <option value="14:00">미시 (13:30 ~ 15:30)</option>
-
-                                    <option value="16:00">신시 (15:30 ~ 17:30)</option>
-
-                                    <option value="18:00">유시 (17:30 ~ 19:30)</option>
-
-                                    <option value="20:00">술시 (19:30 ~ 21:30)</option>
-
-                                    <option value="22:00">해시 (21:30 ~ 23:30)</option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            {/* 개인정보 수집 동의 영역 추가 */}
-
-                            <div className="pt-4 border-t border-sand/20">
-
-                                <label className="flex items-start gap-3 cursor-pointer group">
-
-                                    <input 
-
-                                        type="checkbox" 
-
-                                        required 
-
-                                        className="mt-1 w-4 h-4 accent-moss" 
-
-                                        checked={agree}
-
-                                        onChange={(e) => setAgree(e.target.checked)}
-
-                                    />
-
-                                    <span className="text-sm text-moss/70 leading-relaxed group-hover:text-moss transition-colors">
-
-                                        <span className="font-bold text-moss">[필수]</span> 개인정보 수집 및 이용에 동의합니다. 제공하신 정보는 사주 리포트 생성 및 분석 서비스 제공 목적으로만 사용되며, 그 외 용도로 활용되지 않습니다.
-
-                                    </span>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <button type="submit" disabled={isLoading} className="w-full py-5 bg-moss text-white rounded-full font-black text-lg hover:bg-deep-moss transition-all disabled:bg-moss/50">
-
-                                {isLoading ? '분석 중...' : '리포트 신청하기'}
-
-                            </button>
-
-                        </form>
-
-                        {preview && (
-
-                            <div className="mt-12 p-10 bg-white border-2 border-sand rounded-3xl animate-fade-in">
-
-                                <h3 className="text-xl font-serif text-moss text-center mb-4">분석 미리보기</h3>
-
-                                <p className="text-center italic text-moss/80">{preview}</p>
-
-                            </div>
-
-                        )}
-
-                    </div>
-
-                </section>
-
-            );
-
-        };
+    const [formData, setFormData] = useState({ 
+        name: '', 
+        gender: 'female', 
+        birthDate: '', 
+        birthTime: 'unknown', 
+        intent: intent || 'life' 
+    });
+    const [agree, setAgree] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => { 
+        if (intent) setFormData(prev => ({ ...prev, intent })); 
+    }, [intent]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!agree) {
+            alert("개인정보 수집 및 이용에 동의해주세요.");
+            return;
+        }
+        alert(`${formData.name}님의 리포트 신청이 완료되었습니다! 48시간 이내 분석 완료 예정입니다.`);
+    };
+
+    // return 문이 함수 블록 안에 정확히 위치해야 합니다.
+    return (
+        <section id="apply" className="py-24 px-6 bg-soft-white">
+            <div className="max-w-3xl mx-auto">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-serif text-moss mb-4">리포트 신청 (입력 1분)</h2>
+                </div>
+                <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-sand/30 space-y-8">
+                    <div className="flex gap-4">
+                        <button type="button" onClick={() => onIntentChange('life')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'life' ? 'bg-moss text-white border-moss' : 'bg-white border-sand'}`}>종합 사주</button>
+                        <button type="button" onClick={() => onIntentChange('romance')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'romance' ? 'bg-sand text-deep-moss border-sand' : 'bg-white border-sand'}`}>연애 특화</button>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <input required type="text" placeholder="성함" className="p-3 border rounded-xl outline-moss" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                        <select className="p-3 border rounded-xl outline-moss" value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
+                            <option value="female">여성</option><option value="male">남성</option>
+                        </select>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <input required type="date" className="p-3 border rounded-xl outline-moss" value={formData.birthDate} onChange={e => setFormData({...formData, birthDate: e.target.value})} />
+                        <select className="p-3 border rounded-xl outline-moss" value={formData.birthTime} onChange={e => setFormData({...formData, birthTime: e.target.value})}>
+                            <option value="unknown">모름 (00시 기준 분석)</option>
+                            <option value="00:00">자시 (00:00 ~ 01:30)</option>
+                            <option value="02:00">축시 (01:30 ~ 03:30)</option>
+                            <option value="04:00">인시 (03:30 ~ 05:30)</option>
+                            <option value="06:00">묘시 (05:30 ~ 07:30)</option>
+                            <option value="08:00">진시 (07:30 ~ 09:30)</option>
+                            <option value="10:00">사시 (09:30 ~ 11:30)</option>
+                            <option value="12:00">오시 (11:30 ~ 13:30)</option>
+                            <option value="14:00">미시 (13:30 ~ 15:30)</option>
+                            <option value="16:00">신시 (15:30 ~ 17:30)</option>
+                            <option value="18:00">유시 (17:30 ~ 19:30)</option>
+                            <option value="20:00">술시 (19:30 ~ 21:30)</option>
+                            <option value="22:00">해시 (21:30 ~ 23:30)</option>
+                        </select>
+                    </div>
+                    <div className="pt-4 border-t border-sand/20">
+                        <label className="flex items-start gap-3 cursor-pointer group">
+                            <input type="checkbox" required className="mt-1 w-4 h-4 accent-moss" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+                            <span className="text-sm text-moss/70 leading-relaxed group-hover:text-moss transition-colors">
+                                <span className="font-bold text-moss">[필수]</span> 개인정보 수집 및 이용에 동의합니다.
+                            </span>
+                        </label>
+                    </div>
+                    <button type="submit" disabled={isLoading} className="w-full py-5 bg-moss text-white rounded-full font-black text-lg hover:bg-deep-moss transition-all">
+                        {isLoading ? '분석 중...' : '리포트 신청하기'}
+                    </button>
+                </form>
+            </div>
+        </section>
+    );
+};
 
 
 
