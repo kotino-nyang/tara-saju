@@ -340,6 +340,9 @@
     });
     const [agree, setAgree] = useState(false);
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [preview, setPreview] = useState(null);
+
     useEffect(() => { 
         if (intent) setFormData(prev => ({ ...prev, intent })); 
     }, [intent]);
