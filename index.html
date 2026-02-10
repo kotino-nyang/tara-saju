@@ -199,9 +199,19 @@
                             <div className="grid md:grid-cols-2 gap-6">
                                 <input required type="date" className="p-3 border rounded-xl" value={formData.birthDate} onChange={e => setFormData({...formData, birthDate: e.target.value})} />
                                 <select className="p-3 border rounded-xl" value={formData.birthTime} onChange={e => setFormData({...formData, birthTime: e.target.value})}>
-                                    <option value="unknown">태어난 시간 모름</option>
-                                    <option value="00:00">자시 (00:00 ~ 01:30)</option>
-                                    <option value="12:00">오시 (11:30 ~ 13:30)</option>
+                                    <option value="unknown">모름 (자시 전후 00시 기준)</option>
+                <option value="00:00">자시 (00:00 ~ 01:30)</option>
+                <option value="02:00">축시 (01:30 ~ 03:30)</option>
+                <option value="04:00">인시 (03:30 ~ 05:30)</option>
+                <option value="06:00">묘시 (05:30 ~ 07:30)</option>
+                <option value="08:00">진시 (07:30 ~ 09:30)</option>
+                <option value="10:00">사시 (09:30 ~ 11:30)</option>
+                <option value="12:00">오시 (11:30 ~ 13:30)</option>
+                <option value="14:00">미시 (13:30 ~ 15:30)</option>
+                <option value="16:00">신시 (15:30 ~ 17:30)</option>
+                <option value="18:00">유시 (17:30 ~ 19:30)</option>
+                <option value="20:00">술시 (19:30 ~ 21:30)</option>
+                <option value="22:00">해시 (21:30 ~ 23:30)</option>
                                 </select>
                             </div>
                             <button type="submit" disabled={isLoading} className="w-full py-5 bg-moss text-white rounded-full font-black text-lg">
