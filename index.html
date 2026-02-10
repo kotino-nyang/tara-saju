@@ -125,32 +125,14 @@
 
 
         const Header = () => (
-
-            <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
-
-                <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
-                    <div className="text-moss font-serif text-2xl font-black tracking-widest">TARA SAJU</div>
-
-                    <nav className="hidden md:flex gap-8 text-sm font-medium text-moss/70">
-
-                        <a href="#features" className="hover:text-moss transition-colors">핵심 분석</a>
-
-                        <a href="#social" className="hover:text-moss transition-colors">후기</a>
-
-                        <a href="#apply" className="px-4 py-2 bg-moss text-white rounded-full hover:bg-deep-moss transition-colors">리포트 신청</a>
-
-                    </nav>
-
-                </div>
-
-            </header>
-
-        );
-
-
-
-        const Hero = ({ onSetIntent }) => (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            {/* 로고 이미지 적용 */}
+            <div className="flex items-center">
+                <a href="/">
+                    <img 
+                        src="https://github.com/kotino-nyang/tara-saju/blob/main/logo.png?raw=true" 
+                        alt="TARA SAJU" const Hero = ({ onSetIntent }) => (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" className="w-full h-full object-cover brightness-110 scale-105" />
@@ -158,22 +140,23 @@
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-soft-white"></div>
         </div>
         <div className="relative z-10 max-w-4xl px-6 text-center">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight animate-fade-in text-moss">
+            {/* 폰트 크기 축소 및 행간(leading-relaxed) 확대 */}
+            <h1 className="text-3xl md:text-5xl font-serif font-bold mb-8 leading-relaxed md:leading-[1.5] animate-fade-in text-moss">
                 요즘, 왜 이렇게 막막한지.<br /><span className="text-sand drop-shadow-sm">사주 흐름</span>으로 정확히 정리해드립니다.
             </h1>
-            <p className="text-lg md:text-xl font-medium mb-10 text-moss/80 max-w-2xl mx-auto leading-relaxed">
-                타라사주는 달콤한 말로 끝내지 않습니다. 당신의 사주 구조로부터 지금 막히는 이유와 열리는 타이밍을 알려드립니다.
+            {/* 지정된 위치 줄바꿈 적용 */}
+            <p className="text-base md:text-lg font-medium mb-10 text-moss/80 max-w-2xl mx-auto leading-relaxed">
+                타라사주는 달콤한 말로 끝내지 않습니다.<br className="hidden md:block" />
+                당신의 사주 구조로부터 지금 막히는 이유와 열리는 타이밍을 알려드립니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <a href="#apply" className="w-full sm:w-auto px-8 py-4 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">내 사주 리포트 신청하기</a>
             </div>
             <div className="flex flex-wrap justify-center gap-6 pt-8 border-t border-moss/10">
-                {/* 클릭 시 TYPE A 선택 후 브릿지 섹션으로 이동 */}
                 <button onClick={() => { onSetIntent('life'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
                     <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
                     일·돈·미래가 답답해요
                 </button>
-                {/* 클릭 시 TYPE B 선택 후 브릿지 섹션으로 이동 */}
                 <button onClick={() => { onSetIntent('romance'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
                     <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
                     연애·결혼이 궁금해요
@@ -186,42 +169,30 @@
 
 
         const ProblemSolution = () => (
-
-            <section className="py-24 px-6 bg-soft-white overflow-hidden">
-
-                <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
-
-                    <div className="flex items-center justify-center p-8 rounded-2xl bg-soft-white border border-sand/20">
-
-                        <img src="https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000&auto=format&fit=crop" className="w-full max-w-xs rounded-full drop-shadow-xl animate-fade-in" />
-
-                    </div>
-
-                    <div className="relative flex flex-col justify-center">
-
-                        <div className="bg-white border-2 border-sand rounded-3xl p-10 md:p-12 shadow-xl h-full flex flex-col justify-center">
-
-                           <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-6 w-fit">SOLUTION</div>
-
-                           <h3 className="text-2xl font-serif mb-6 text-moss font-black">정확한 사주 구조 분석</h3>
-
-                           <div className="space-y-6 text-moss/80 font-medium leading-relaxed">
-
-                             <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
-
-                             <p className="pt-6 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
-
-                           </div>
-
-                        </div>
-
-                    </div>
-
+    <section className="py-24 px-6 bg-soft-white overflow-hidden">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
+            {/* 좌측 이미지 블록 수정 */}
+            <div className="flex items-center justify-center p-4 rounded-2xl bg-soft-white">
+                <img 
+                    src="https://github.com/kotino-nyang/tara-saju/blob/main/wuxing.png?raw=true" 
+                    alt="사주 구조 분석 데이터" 
+                    className="w-full max-w-sm rounded-2xl drop-shadow-2xl animate-fade-in object-cover" 
+                />
+            </div>
+            
+            <div className="relative flex flex-col justify-center">
+                <div className="bg-white border-2 border-sand rounded-3xl p-10 md:p-12 shadow-xl h-full flex flex-col justify-center">
+                   <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-6 w-fit">SOLUTION</div>
+                   <h3 className="text-2xl font-serif mb-6 text-moss font-black">정확한 사주 구조 분석</h3>
+                   <div className="space-y-6 text-moss/80 font-medium leading-relaxed">
+                     <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
+                     <p className="pt-6 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
+                   </div>
                 </div>
-
-            </section>
-
-        );
+            </div>
+        </div>
+    </section>
+);
 
 
 
