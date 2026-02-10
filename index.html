@@ -126,23 +126,21 @@
 
         const Header = () => (
     <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="flex items-center">
-                <a href="/">
-                    <img 
-                        src="https://i.imgur.com/sdU9nRt.png" 
-                        alt="TARA SAJU" 
-                        /* h-8에서 h-12(48px) ~ md:h-16(64px)로 키웠습니다. */
-                        className="h-12 md:h-16 w-auto transition-all duration-300 object-contain" 
-                    />
-                </a>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-center items-center">
+            <a href="/">
+                <img 
+                    src="https://i.imgur.com/sdU9nRt.png" 
+                    alt="TARA SAJU" 
+                    className="h-16 md:h-24 w-auto transition-all duration-300 object-contain" 
+                />
+            </a>
         </div>
     </header>
 );
 
         const Hero = ({ onSetIntent }) => (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32 pb-12">
+    /* min-h 제거, pb-4로 하단 여백 최소화 */
+    <section className="relative flex items-center justify-center overflow-hidden pt-48 pb-4">
         <div className="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" className="w-full h-full object-cover brightness-110 scale-105" />
             <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
@@ -159,7 +157,8 @@
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <a href="#apply" className="w-full sm:w-auto px-8 py-4 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">내 사주 리포트 신청하기</a>
             </div>
-            <div className="flex flex-wrap justify-center gap-6 pt-8 border-t border-moss/10">
+            {/* 상단 보더(라인) 제거하고 패딩 조절 */}
+            <div className="flex flex-wrap justify-center gap-6 py-4">
                 <button onClick={() => { onSetIntent('life'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
                     <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
                     일·돈·미래가 답답해요
@@ -168,6 +167,31 @@
                     <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
                     연애·결혼이 궁금해요
                 </button>
+            </div>
+        </div>
+    </section>
+);
+
+const ProblemSolution = () => (
+    /* pt-0으로 상단 여백 완전 제거 */
+    <section className="pt-0 pb-24 px-6 bg-soft-white overflow-hidden">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
+            <div className="flex items-center justify-center p-4 rounded-2xl bg-soft-white">
+                <img 
+                    src="https://i.imgur.com/BPYe59t.png" 
+                    alt="사주 구조 분석 데이터" 
+                    className="w-full max-w-sm rounded-2xl drop-shadow-2xl animate-fade-in object-cover" 
+                />
+            </div>
+            <div className="relative flex flex-col justify-center">
+                <div className="bg-white border-2 border-sand rounded-3xl p-10 md:p-12 shadow-xl h-full flex flex-col justify-center">
+                   <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-6 w-fit">SOLUTION</div>
+                   <h3 className="text-2xl font-serif mb-6 text-moss font-black">정확한 사주 구조 분석</h3>
+                   <div className="space-y-6 text-moss/80 font-medium leading-relaxed">
+                     <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
+                     <p className="pt-6 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
+                   </div>
+                </div>
             </div>
         </div>
     </section>
