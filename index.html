@@ -151,64 +151,37 @@
 
 
         const Hero = ({ onSetIntent }) => (
-
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
-
-                <div className="absolute inset-0 z-0">
-
-                    <img src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" className="w-full h-full object-cover brightness-110 scale-105" />
-
-                    <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
-
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-soft-white"></div>
-
-                </div>
-
-                <div className="relative z-10 max-w-4xl px-6 text-center">
-
-                    <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight animate-fade-in text-moss">
-
-                        요즘, 왜 이렇게 막막한지.<br /><span className="text-sand drop-shadow-sm">사주 흐름</span>으로 정확히 정리해드립니다.
-
-                    </h1>
-
-                    <p className="text-lg md:text-xl font-medium mb-10 text-moss/80 max-w-2xl mx-auto leading-relaxed">
-
-                        타라사주는 달콤한 말로 끝내지 않습니다. 당신의 사주 구조로부터 지금 막히는 이유와 열리는 타이밍을 알려드립니다.
-
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-
-                        <a href="#apply" className="w-full sm:w-auto px-8 py-4 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">내 사주 리포트 신청하기</a>
-
-                    </div>
-
-                    <div className="flex flex-wrap justify-center gap-6 pt-8 border-t border-moss/10">
-
-                        <button onClick={() => { onSetIntent('life'); window.location.href = '#apply'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
-
-                            <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
-
-                            일·돈·미래가 답답해요
-
-                        </button>
-
-                        <button onClick={() => { onSetIntent('romance'); window.location.href = '#apply'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
-
-                            <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
-
-                            연애·결혼이 궁금해요
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        );
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" className="w-full h-full object-cover brightness-110 scale-105" />
+            <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-soft-white"></div>
+        </div>
+        <div className="relative z-10 max-w-4xl px-6 text-center">
+            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight animate-fade-in text-moss">
+                요즘, 왜 이렇게 막막한지.<br /><span className="text-sand drop-shadow-sm">사주 흐름</span>으로 정확히 정리해드립니다.
+            </h1>
+            <p className="text-lg md:text-xl font-medium mb-10 text-moss/80 max-w-2xl mx-auto leading-relaxed">
+                타라사주는 달콤한 말로 끝내지 않습니다. 당신의 사주 구조로부터 지금 막히는 이유와 열리는 타이밍을 알려드립니다.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="#apply" className="w-full sm:w-auto px-8 py-4 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">내 사주 리포트 신청하기</a>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6 pt-8 border-t border-moss/10">
+                {/* 클릭 시 TYPE A 선택 후 브릿지 섹션으로 이동 */}
+                <button onClick={() => { onSetIntent('life'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
+                    <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
+                    일·돈·미래가 답답해요
+                </button>
+                {/* 클릭 시 TYPE B 선택 후 브릿지 섹션으로 이동 */}
+                <button onClick={() => { onSetIntent('romance'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
+                    <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
+                    연애·결혼이 궁금해요
+                </button>
+            </div>
+        </div>
+    </section>
+);
 
 
 
@@ -253,80 +226,49 @@
 
 
         const SegmentationBridge = ({ selectedIntent, onSetIntent }) => (
-
-            <section id="bridge" className="py-24 px-6 bg-[#F2EDE4]">
-
-                <div className="max-w-7xl mx-auto">
-
-                    <div className="text-center mb-16">
-
-                        <h2 className="text-3xl md:text-5xl font-serif mb-4 text-moss">지금 가장 시급한 고민은 무엇인가요?</h2>
-
-                        <p className="text-moss/60">목적에 최적화된 리포트를 구성해드립니다.</p>
-
+    <section id="bridge" className="py-24 px-6 bg-[#F2EDE4]">
+        <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-5xl font-serif mb-4 text-moss">지금 가장 시급한 고민은 무엇인가요?</h2>
+                <p className="text-moss/60">목적에 최적화된 리포트를 구성해드립니다.</p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+                {/* TYPE A */}
+                <div onClick={() => onSetIntent('life')} className={`cursor-pointer group p-10 rounded-3xl border-2 transition-all h-full flex flex-col justify-between ${selectedIntent === 'life' ? 'bg-moss text-white border-moss shadow-2xl' : 'bg-white text-moss border-sand hover:border-moss'}`}>
+                    <div>
+                        <span className="text-sm font-bold tracking-widest opacity-60">TYPE A. 인생 고민형</span>
+                        <h3 className="text-2xl md:text-3xl font-serif mt-4 mb-8">“지금은 밀어붙일 때인지,<br />정비할 때인지부터.”</h3>
+                        <ul className="space-y-4 text-lg text-left">
+                            <li>● 힘이 붙는 시기 vs 소모가 큰 시기</li>
+                            <li>● 커리어 방향 우선순위 제안</li>
+                            <li>● 돈 흐름 관리 포인트</li>
+                        </ul>
                     </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-
-                        {/* TYPE A */}
-
-                        <div onClick={() => onSetIntent('life')} className={`cursor-pointer group p-10 rounded-3xl border-2 transition-all h-full flex flex-col justify-between ${selectedIntent === 'life' ? 'bg-moss text-white border-moss shadow-2xl' : 'bg-white text-moss border-sand hover:border-moss'}`}>
-
-                            <div>
-
-                                <span className="text-sm font-bold tracking-widest opacity-60">TYPE A. 인생 고민형</span>
-
-                                <h3 className="text-2xl md:text-3xl font-serif mt-4 mb-8">“지금은 밀어붙일 때인지,<br />정비할 때인지부터.”</h3>
-
-                                <ul className="space-y-4 text-lg text-left">
-
-                                    <li>● 힘이 붙는 시기 vs 소모가 큰 시기</li>
-
-                                    <li>● 커리어 방향 우선순위 제안</li>
-
-                                    <li>● 돈 흐름 관리 포인트</li>
-
-                                </ul>
-
-                            </div>
-
-                            <div className={`mt-10 px-6 py-3 rounded-full text-center font-bold border ${selectedIntent === 'life' ? 'bg-white text-moss border-white' : 'bg-moss text-white border-moss'}`}>내 흐름 먼저 정리하기</div>
-
-                        </div>
-
-                        {/* TYPE B */}
-
-                        <div onClick={() => onSetIntent('romance')} className={`cursor-pointer group p-10 rounded-3xl border-2 transition-all h-full flex flex-col justify-between ${selectedIntent === 'romance' ? 'bg-sand text-deep-moss border-sand shadow-2xl' : 'bg-white text-moss border-sand hover:border-sand/60'}`}>
-
-                            <div>
-
-                                <span className="text-sm font-bold tracking-widest opacity-60">TYPE B. 연애·결혼형</span>
-
-                                <h3 className="text-2xl md:text-3xl font-serif mt-4 mb-8">“그 사람, 그리고 그 시기.<br />흔들리지 않게.”</h3>
-
-                                <ul className="space-y-4 text-lg text-left">
-
-                                    <li>● 내게 맞는 관계의 결</li>
-
-                                    <li>● 인연의 타이밍(시작/정리)</li>
-
-                                    <li>● 결혼·가정운 선택 기준</li>
-
-                                </ul>
-
-                            </div>
-
-                            <div className={`mt-10 px-6 py-3 rounded-full text-center font-bold border ${selectedIntent === 'romance' ? 'bg-deep-moss text-white border-deep-moss' : 'bg-sand text-deep-moss border-sand'}`}>연애·결혼 흐름 확인하기</div>
-
-                        </div>
-
-                    </div>
-
+                    {/* 클릭 시 신청란 종합사주 옵션으로 이동 */}
+                    <button onClick={(e) => { e.stopPropagation(); onSetIntent('life'); window.location.href = '#apply'; }} className={`mt-10 px-6 py-3 rounded-full text-center font-bold border transition-all ${selectedIntent === 'life' ? 'bg-white text-moss border-white' : 'bg-moss text-white border-moss'}`}>
+                        내 흐름 먼저 정리하기
+                    </button>
                 </div>
-
-            </section>
-
-        );
+                {/* TYPE B */}
+                <div onClick={() => onSetIntent('romance')} className={`cursor-pointer group p-10 rounded-3xl border-2 transition-all h-full flex flex-col justify-between ${selectedIntent === 'romance' ? 'bg-sand text-deep-moss border-sand shadow-2xl' : 'bg-white text-moss border-sand hover:border-sand/60'}`}>
+                    <div>
+                        <span className="text-sm font-bold tracking-widest opacity-60">TYPE B. 연애·결혼형</span>
+                        <h3 className="text-2xl md:text-3xl font-serif mt-4 mb-8">“그 사람, 그리고 그 시기.<br />흔들리지 않게.”</h3>
+                        <ul className="space-y-4 text-lg text-left">
+                            <li>● 내게 맞는 관계의 결</li>
+                            <li>● 인연의 타이밍(시작/정리)</li>
+                            <li>● 결혼·가정운 선택 기준</li>
+                        </ul>
+                    </div>
+                    {/* 클릭 시 신청란 연애운 옵션으로 이동 */}
+                    <button onClick={(e) => { e.stopPropagation(); onSetIntent('romance'); window.location.href = '#apply'; }} className={`mt-10 px-6 py-3 rounded-full text-center font-bold border transition-all ${selectedIntent === 'romance' ? 'bg-deep-moss text-white border-deep-moss' : 'bg-sand text-deep-moss border-sand'}`}>
+                        연애·결혼 흐름 확인하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+);
 
 
 
