@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TARA SAJU | 타라사주</title>
+    <title>TARA SAJU | 타라사주 리포트</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Pretendard:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: { sand: '#DBCDB4', moss: '#4A5844', 'soft-white': '#F9F7F2', 'deep-moss': '#2D3629' },
-                    fontFamily: { serif: ['"Noto Serif KR"', 'serif'], sans: ['Pretendard', 'sans-serif'] },
-                    animation: { 'fade-in': 'fadeIn 1s ease-out forwards', 'scroll': 'scroll 40s linear infinite' },
-                    keyframes: {
-                        fadeIn: { from: { opacity: '0', transform: 'translateY(20px)' }, to { opacity: '1', transform: 'translateY(0)' } },
-                        scroll: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
-                    }
+                    fontFamily: { serif: ['"Noto Serif KR"', 'serif'], sans: ['Pretendard', 'sans-serif'] }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
-        .animate-scroll { display: flex; width: max-content; }
-        input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.5; }
+        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; background-color: #F9F7F2; }
+        .animate-scroll { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .selection\:bg-sand ::selection { background-color: #DBCDB4; color: #2D3629; }
     </style>
 </head>
-<body class="bg-soft-white selection:bg-sand selection:text-deep-moss">
+<body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useCallback, useRef } = React;
 
-        // --- Constants (From User Code) ---
+        // --- 데이터 정의 ---
         const FEATURES = [
             { id: 1, icon: "💎", title: "본연의 기질", description: "태어날 때 부여받은 당신만의 고유한 에너지와 그릇을 분석합니다." },
             { id: 2, icon: "🌊", title: "대운의 흐름", description: "지금이 썰물인지 밀물인지, 인생의 큰 주기를 짚어드립니다." },
@@ -51,10 +49,10 @@
             { content: "막연했던 불안감이 사라지고 지금 무엇을 해야 할지 명확해졌어요.", author: "김OO 님" },
             { content: "사업 확장을 고민하던 시기에 정말 큰 도움이 되었습니다.", author: "이OO 님" },
             { content: "연애운 분석을 통해 저 자신을 더 깊이 이해하게 되었네요.", author: "박OO 님" },
-            { content: "사주를 단순히 미신이라 생각했는데, 데이터로 보니 정말 다르네요.", author: "최OO 님" }
+            { content: "결정의 순간에 명확한 기준을 얻었습니다.", author: "최OO 님" }
         ];
 
-        // --- Sub-components (Exact Layout Mirroring) ---
+        // --- 컴포넌트 구현 (사용자 제공 코드와 1:1 매칭) ---
 
         const Header = () => (
             <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
@@ -104,18 +102,16 @@
             <section className="py-24 px-6 bg-soft-white overflow-hidden">
                 <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
                     <div className="flex items-center justify-center p-8 rounded-2xl bg-soft-white border border-sand/20">
-                        <div className="relative w-full max-w-xs aspect-square flex items-center justify-center">
-                            <img src="https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000&auto=format&fit=crop" className="w-full h-auto object-contain rounded-full drop-shadow-xl" />
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000&auto=format&fit=crop" className="w-full max-w-xs rounded-full drop-shadow-xl animate-fade-in" />
                     </div>
                     <div className="relative flex flex-col justify-center">
                         <div className="bg-white border-2 border-sand rounded-3xl p-10 md:p-12 shadow-xl h-full flex flex-col justify-center">
-                            <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-6 w-fit">SOLUTION</div>
-                            <h3 className="text-2xl font-serif mb-6 text-moss font-black">정확한 사주 구조 분석</h3>
-                            <div className="space-y-6 text-moss/80 font-medium leading-relaxed">
-                                <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
-                                <p className="pt-6 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
-                            </div>
+                           <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-6 w-fit">SOLUTION</div>
+                           <h3 className="text-2xl font-serif mb-6 text-moss font-black">정확한 사주 구조 분석</h3>
+                           <div className="space-y-6 text-moss/80 font-medium leading-relaxed">
+                             <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
+                             <p className="pt-6 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
+                           </div>
                         </div>
                     </div>
                 </div>
@@ -130,69 +126,32 @@
                         <p className="text-moss/60">목적에 최적화된 리포트를 구성해드립니다.</p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-8">
+                        {/* TYPE A */}
                         <div onClick={() => onSetIntent('life')} className={`cursor-pointer group p-10 rounded-3xl border-2 transition-all h-full flex flex-col justify-between ${selectedIntent === 'life' ? 'bg-moss text-white border-moss shadow-2xl' : 'bg-white text-moss border-sand hover:border-moss'}`}>
                             <div>
                                 <span className="text-sm font-bold tracking-widest opacity-60">TYPE A. 인생 고민형</span>
                                 <h3 className="text-2xl md:text-3xl font-serif mt-4 mb-8">“지금은 밀어붙일 때인지,<br />정비할 때인지부터.”</h3>
-                                <ul className="space-y-4 text-lg">
-                                    <li className="flex items-start gap-3"><span>●</span><span>힘이 붙는 시기 vs 소모가 큰 시기 구분</span></li>
-                                    <li className="flex items-start gap-3"><span>●</span><span>커리어 방향 우선순위 제안</span></li>
-                                    <li className="flex items-start gap-3"><span>●</span><span>돈 흐름 관리 포인트</span></li>
+                                <ul className="space-y-4 text-lg text-left">
+                                    <li>● 힘이 붙는 시기 vs 소모가 큰 시기</li>
+                                    <li>● 커리어 방향 우선순위 제안</li>
+                                    <li>● 돈 흐름 관리 포인트</li>
                                 </ul>
                             </div>
-                            <div className={`mt-10 px-6 py-4 rounded-full text-center font-bold border transition-all ${selectedIntent === 'life' ? 'bg-white text-moss border-white' : 'bg-moss text-white border-moss'}`}>내 흐름 먼저 정리하기</div>
+                            <div className={`mt-10 px-6 py-3 rounded-full text-center font-bold border ${selectedIntent === 'life' ? 'bg-white text-moss border-white' : 'bg-moss text-white border-moss'}`}>내 흐름 먼저 정리하기</div>
                         </div>
+                        {/* TYPE B */}
                         <div onClick={() => onSetIntent('romance')} className={`cursor-pointer group p-10 rounded-3xl border-2 transition-all h-full flex flex-col justify-between ${selectedIntent === 'romance' ? 'bg-sand text-deep-moss border-sand shadow-2xl' : 'bg-white text-moss border-sand hover:border-sand/60'}`}>
                             <div>
                                 <span className="text-sm font-bold tracking-widest opacity-60">TYPE B. 연애·결혼형</span>
                                 <h3 className="text-2xl md:text-3xl font-serif mt-4 mb-8">“그 사람, 그리고 그 시기.<br />흔들리지 않게.”</h3>
-                                <ul className="space-y-4 text-lg">
-                                    <li className="flex items-start gap-3"><span>●</span><span>내게 맞는 관계의 결</span></li>
-                                    <li className="flex items-start gap-3"><span>●</span><span>인연의 타이밍(시작/정리/결정)</span></li>
-                                    <li className="flex items-start gap-3"><span>●</span><span>결혼·가정운에서 중요한 기준</span></li>
+                                <ul className="space-y-4 text-lg text-left">
+                                    <li>● 내게 맞는 관계의 결</li>
+                                    <li>● 인연의 타이밍(시작/정리)</li>
+                                    <li>● 결혼·가정운 선택 기준</li>
                                 </ul>
                             </div>
-                            <div className={`mt-10 px-6 py-4 rounded-full text-center font-bold border transition-all ${selectedIntent === 'romance' ? 'bg-deep-moss text-white border-deep-moss' : 'bg-sand text-deep-moss border-sand'}`}>연애·결혼 흐름 확인하기</div>
+                            <div className={`mt-10 px-6 py-3 rounded-full text-center font-bold border ${selectedIntent === 'romance' ? 'bg-deep-moss text-white border-deep-moss' : 'bg-sand text-deep-moss border-sand'}`}>연애·결혼 흐름 확인하기</div>
                         </div>
-                    </div>
-                </div>
-            </section>
-        );
-
-        const Features = () => (
-            <section id="features" className="py-24 px-6 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-20">
-                        <h2 className="text-4xl font-serif text-moss mb-4">6가지 핵심 분석 항목</h2>
-                        <p className="text-moss/50">단순한 운세가 아닌, 당신의 운명을 구성하는 6개의 기둥을 분석합니다.</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {FEATURES.map((feature) => (
-                            <div key={feature.id} className="p-10 rounded-2xl bg-soft-white border border-sand/20 hover:border-sand hover:shadow-lg transition-all group">
-                                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform inline-block">{feature.icon}</div>
-                                <h3 className="text-xl font-bold font-serif mb-4 text-moss">{feature.title}</h3>
-                                <p className="text-moss/70 leading-relaxed">{feature.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        );
-
-        const SocialProof = () => (
-            <section id="social" className="py-24 bg-moss overflow-hidden">
-                <div className="text-center mb-16 px-6">
-                    <h2 className="text-3xl md:text-4xl font-serif text-sand mb-4">타라사주가 바꾼 삶의 조각들</h2>
-                    <p className="text-sand/60">이미 많은 분들이 감이 아닌 흐름으로 삶을 재정비하고 있습니다.</p>
-                </div>
-                <div className="relative flex whitespace-nowrap">
-                    <div className="animate-scroll">
-                        {[...TESTIMONIALS, ...TESTIMONIALS].map((testimony, idx) => (
-                            <div key={idx} className="inline-block w-[350px] mx-4 whitespace-normal bg-deep-moss/50 border border-sand/20 p-8 rounded-2xl text-sand/90">
-                                <p className="italic mb-6 leading-relaxed">"{testimony.content}"</p>
-                                <div className="text-sm font-bold opacity-70">— {testimony.author}</div>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </section>
@@ -203,11 +162,13 @@
             const [isLoading, setIsLoading] = useState(false);
             const [preview, setPreview] = useState(null);
 
+            useEffect(() => { if (intent) setFormData(prev => ({ ...prev, intent })); }, [intent]);
+
             const handleSubmit = (e) => {
                 e.preventDefault();
                 setIsLoading(true);
                 setTimeout(() => {
-                    setPreview(`${formData.name}님은 현재 ${formData.intent === 'life' ? '인생의 중요한 전환점' : '연애운의 정점'}에 와 계십니다. 꼼꼼하게 분석한 리포트로 곧 찾아뵙겠습니다.`);
+                    setPreview(`${formData.name}님은 현재 ${formData.intent === 'life' ? '새로운 시작의 기운이 꿈틀거리는' : '인연의 결이 깊어지는'} 흐름 속에 계십니다. 구체적인 대운의 변화는 리포트에서 확인하실 수 있습니다.`);
                     setIsLoading(false);
                 }, 1500);
             };
@@ -217,71 +178,34 @@
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl font-serif text-moss mb-4">리포트 신청 (입력 1분)</h2>
-                            <p className="text-moss/60">정확한 분석을 위해 필요한 정보를 입력해 주세요.</p>
                         </div>
                         <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-sand/30 space-y-8">
-                            <div className="space-y-4 p-6 bg-[#F2EDE4]/50 rounded-2xl border border-sand/30">
-                                <label className="text-sm font-bold text-moss/70 block text-center">분석 옵션 선택</label>
-                                <div className="flex gap-4">
-                                    <button type="button" onClick={() => onIntentChange('life')} className={`flex-1 px-4 py-4 rounded-xl font-bold border-2 transition-all ${formData.intent === 'life' ? 'bg-moss text-white border-moss shadow-md' : 'bg-white text-moss border-sand/40 hover:border-moss/40'}`}>
-                                        <div className="text-lg">종합 사주 분석</div>
-                                        <div className="text-[10px] opacity-60 font-medium text-center">일·재물·커리어·대운</div>
-                                    </button>
-                                    <button type="button" onClick={() => onIntentChange('romance')} className={`flex-1 px-4 py-4 rounded-xl font-bold border-2 transition-all ${formData.intent === 'romance' ? 'bg-sand text-deep-moss border-sand shadow-md' : 'bg-white text-moss border-sand/40 hover:border-sand/40'}`}>
-                                        <div className="text-lg">연애운 특화 분석</div>
-                                        <div className="text-[10px] opacity-60 font-medium text-center">인연·타이밍·관계의 결</div>
-                                    </button>
-                                </div>
+                            <div className="flex gap-4">
+                                <button type="button" onClick={() => onIntentChange('life')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'life' ? 'bg-moss text-white border-moss' : 'bg-white border-sand'}`}>종합 사주</button>
+                                <button type="button" onClick={() => onIntentChange('romance')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'romance' ? 'bg-sand text-deep-moss border-sand' : 'bg-white border-sand'}`}>연애 특화</button>
                             </div>
                             <div className="grid md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-moss/70 block">이름</label>
-                                    <input required type="text" placeholder="성함을 입력하세요" className="w-full px-4 py-3 rounded-xl border border-sand/40 focus:ring-2 focus:ring-moss focus:outline-none transition-all" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-moss/70 block">성별</label>
-                                    <select className="w-full px-4 py-3 rounded-xl border border-sand/40 focus:ring-2 focus:ring-moss focus:outline-none" value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
-                                        <option value="female">여성</option><option value="male">남성</option>
-                                    </select>
-                                </div>
+                                <input required type="text" placeholder="성함" className="p-3 border rounded-xl" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                                <select className="p-3 border rounded-xl" value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
+                                    <option value="female">여성</option><option value="male">남성</option>
+                                </select>
                             </div>
                             <div className="grid md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-moss/70 block">생년월일</label>
-                                    <input required type="date" className="w-full px-4 py-3 rounded-xl border border-sand/40 focus:ring-2 focus:ring-moss focus:outline-none" value={formData.birthDate} onChange={e => setFormData({...formData, birthDate: e.target.value})} />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-moss/70 block">태어난 시간</label>
-                                    <select className="w-full px-4 py-3 rounded-xl border border-sand/40 focus:ring-2 focus:ring-moss focus:outline-none" value={formData.birthTime} onChange={e => setFormData({...formData, birthTime: e.target.value})}>
-                                        <option value="unknown">모름</option>
-                                        <option value="00:00">자시 (00:00 ~ 01:30)</option>
-                                        <option value="12:00">오시 (11:30 ~ 13:30)</option>
-                                    </select>
-                                </div>
+                                <input required type="date" className="p-3 border rounded-xl" value={formData.birthDate} onChange={e => setFormData({...formData, birthDate: e.target.value})} />
+                                <select className="p-3 border rounded-xl" value={formData.birthTime} onChange={e => setFormData({...formData, birthTime: e.target.value})}>
+                                    <option value="unknown">태어난 시간 모름</option>
+                                    <option value="00:00">자시 (00:00 ~ 01:30)</option>
+                                    <option value="12:00">오시 (11:30 ~ 13:30)</option>
+                                </select>
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-moss/70 block">일력 구분</label>
-                                <div className="flex gap-4">
-                                    {['solar', 'lunar', 'leap-lunar'].map((type) => (
-                                        <label key={type} className="flex-1">
-                                            <input type="radio" className="hidden peer" name="calendar" checked={formData.calendarType === type} onChange={() => setFormData({...formData, calendarType: type})} />
-                                            <div className="px-4 py-3 text-center border border-sand/40 rounded-xl cursor-pointer peer-checked:bg-moss peer-checked:text-white transition-all text-sm">
-                                                {type === 'solar' ? '양력' : type === 'lunar' ? '음력' : '윤달'}
-                                            </div>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-                            <button type="submit" disabled={isLoading} className={`w-full py-5 rounded-full font-black text-lg transition-all shadow-lg ${isLoading ? 'bg-moss/50' : 'bg-moss text-white hover:bg-deep-moss hover:scale-[1.02]'}`}>
-                                {isLoading ? '운명의 데이터를 읽고 있습니다...' : '작성 완료하고 리포트 신청하기'}
+                            <button type="submit" disabled={isLoading} className="w-full py-5 bg-moss text-white rounded-full font-black text-lg">
+                                {isLoading ? '분석 중...' : '리포트 신청하기'}
                             </button>
                         </form>
                         {preview && (
-                            <div className="mt-12 p-10 bg-white border-2 border-sand rounded-3xl animate-fade-in text-center">
-                                <span className="inline-block px-4 py-1 bg-sand/20 text-moss text-xs font-bold rounded-full mb-4">SNEAK PEEK REPORT</span>
-                                <h3 className="text-2xl font-serif text-moss mb-6">{formData.name}님의 사주 기운 흐름</h3>
-                                <div className="font-serif italic text-lg text-moss/80 leading-relaxed mb-8">"{preview}"</div>
-                                <button className="px-8 py-3 bg-moss text-white rounded-full font-bold">리포트 결제하고 바로 확인하기</button>
+                            <div className="mt-12 p-10 bg-white border-2 border-sand rounded-3xl animate-fade-in">
+                                <h3 className="text-xl font-serif text-moss text-center mb-4">분석 미리보기</h3>
+                                <p className="text-center italic text-moss/80">{preview}</p>
                             </div>
                         )}
                     </div>
@@ -289,60 +213,57 @@
             );
         };
 
-        const FinalCTA = () => (
-            <section className="py-32 px-6 bg-deep-moss text-sand relative overflow-hidden">
-                <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <h2 className="text-3xl md:text-5xl font-serif mb-8 leading-tight">지금이 ‘밀어붙일 때’인지,<br />‘멈춰야 할 때’인지. 먼저 알고 움직이세요.</h2>
-                    <a href="#apply" className="inline-block px-12 py-5 bg-sand text-deep-moss font-black text-xl rounded-full hover:scale-105 transition-all">지금 내 사주 리포트 신청하기</a>
-                </div>
-            </section>
-        );
-
         const Footer = () => (
             <footer className="bg-soft-white py-16 px-6 border-t border-sand/20 text-moss/70">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-12 text-sm">
-                    <div className="space-y-6">
-                        <div className="text-moss font-serif text-2xl font-black">TARA SAJU</div>
-                        <div className="space-y-2">
-                            <p className="font-bold text-moss text-base">노마릿</p>
-                            <p><span className="font-semibold">대표 :</span> 고수빈</p>
-                            <p><span className="font-semibold">주소 :</span> 경기도 용인시 처인구 포곡읍 포곡로 72, 2층 204호 C555(대두빌딩)</p>
-                        </div>
+                <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-sm">
+                    <div>
+                        <div className="text-moss font-serif text-2xl font-black mb-4">TARA SAJU</div>
+                        <p className="font-bold">노마릿 | 대표: 고수빈</p>
+                        <p>경기도 용인시 처인구 포곡읍 포곡로 72, 2층</p>
                     </div>
-                    <div className="space-y-4">
-                        <h4 className="font-bold text-moss text-base tracking-widest">CS & CONTACT</h4>
-                        <div className="space-y-3">
-                            <p><span className="font-semibold">CS :</span> <span className="text-moss font-bold">010-4648-0046</span></p>
-                            <p><span className="font-semibold">Contact :</span> binzzz010101@gmail.com</p>
-                            <p><span className="font-semibold">Kakao :</span> @타라사주</p>
-                        </div>
+                    <div>
+                        <h4 className="font-bold text-moss mb-4">CS & CONTACT</h4>
+                        <p>CS: 010-4648-0046</p>
+                        <p>Email: binzzz010101@gmail.com</p>
                     </div>
-                    <div className="space-y-6">
-                        <p className="text-xs leading-relaxed opacity-80 border-l border-sand pl-4">
-                            타라사주는 현대적인 감각으로 사주 명리학을 재해석하여, 삶의 중요한 변곡점에서 최고의 결정을 돕는 리포트 서비스를 제공합니다.
-                        </p>
+                    <div className="opacity-80 border-l border-sand pl-4 italic">
+                        "삶의 중요한 변곡점에서 최고의 결정을 돕는 리포트를 제공합니다."
                     </div>
                 </div>
-                <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-sand/10 text-center text-[10px] opacity-40 uppercase tracking-widest">
-                    &copy; {new Date().getFullYear()} 노마릿. All rights reserved.
-                </div>
+                <div className="text-center mt-12 text-[10px] opacity-40">&copy; {new Date().getFullYear()} NOMARIT. ALL RIGHTS RESERVED.</div>
             </footer>
         );
 
         const App = () => {
             const [intent, setIntent] = useState('life');
             return (
-                <div className="min-h-screen">
+                <div className="min-h-screen selection:bg-sand selection:text-deep-moss">
                     <Header />
-                    <main>
-                        <Hero onSetIntent={setIntent} />
-                        <ProblemSolution />
-                        <SegmentationBridge selectedIntent={intent} onSetIntent={setIntent} />
-                        <Features />
-                        <SocialProof />
-                        <ApplicationForm intent={intent} onIntentChange={setIntent} />
-                        <FinalCTA />
-                    </main>
+                    <Hero onSetIntent={setIntent} />
+                    <ProblemSolution />
+                    <SegmentationBridge selectedIntent={intent} onSetIntent={setIntent} />
+                    <section id="features" className="py-24 px-6 bg-white">
+                        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+                            {FEATURES.map(f => (
+                                <div key={f.id} className="p-10 rounded-2xl bg-soft-white border border-sand/20">
+                                    <div className="text-4xl mb-6">{f.icon}</div>
+                                    <h3 className="text-xl font-bold font-serif mb-4 text-moss">{f.title}</h3>
+                                    <p className="text-sm text-moss/70 leading-relaxed">{f.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                    <section id="social" className="py-24 bg-moss overflow-hidden">
+                        <div className="animate-scroll">
+                            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                                <div key={i} className="min-w-[350px] mx-4 p-8 bg-deep-moss text-sand rounded-2xl border border-sand/20">
+                                    <p className="italic mb-4">"{t.content}"</p>
+                                    <div className="text-xs opacity-70">— {t.author}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                    <ApplicationForm intent={intent} onIntentChange={setIntent} />
                     <Footer />
                 </div>
             );
