@@ -251,7 +251,19 @@
             );
         };
 
-
+const Footer = () => (
+    <footer className="py-12 px-6 bg-deep-moss text-sand/50 text-center border-t border-sand/10">
+        <div className="max-w-7xl mx-auto">
+            <div className="font-serif text-xl font-black tracking-widest mb-4 text-sand/80">TARA SAJU</div>
+            <p className="text-sm mb-2">© 2026 TARA SAJU. All rights reserved.</p>
+            <p className="text-[10px] leading-relaxed max-w-md mx-auto">
+                타라사주는 명리학적 데이터를 기반으로 분석을 제공하며, 
+                최종적인 삶의 선택과 책임은 본인에게 있습니다.
+            </p>
+        </div>
+    </footer>
+);
+        
         const App = () => {
             const [intent, setIntent] = useState('life');
             return (
