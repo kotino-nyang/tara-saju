@@ -540,80 +540,56 @@ const Footer = () => (
 
         const App = () => {
 
-            const [intent, setIntent] = useState('life');
+            const App = () => {
+        const [intent, setIntent] = useState('life');
+        return (
+            <div className="min-h-screen selection:bg-sand selection:text-deep-moss">
+                <Header />
+                <Hero onSetIntent={setIntent} />
+                <ProblemSolution />
+                <SegmentationBridge selectedIntent={intent} onSetIntent={setIntent} />
 
-            return (
+                {/* 핵심 분석 섹션 */}
+                <section id="features" className="py-24 px-6 bg-white">
+                    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+                        {FEATURES.map(f => (
+                            <div key={f.id} className="p-10 rounded-2xl bg-soft-white border border-sand/20">
+                                <div className="text-4xl mb-6">{f.icon}</div>
+                                <h3 className="text-xl font-bold font-serif mb-4 text-moss">{f.title}</h3>
+                                <p className="text-sm text-moss/70 leading-relaxed">{f.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-                <div className="min-h-screen selection:bg-sand selection:text-deep-moss">
-
-                    <Header />
-
-                    <Hero onSetIntent={setIntent} />
-
-                    <ProblemSolution />
-
-                    <SegmentationBridge selectedIntent={intent} onSetIntent={setIntent} />
-
-                    <section id="features" className="py-24 px-6 bg-white">
-
-                        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-
-                            {FEATURES.map(f => (
-
-                                <div key={f.id} className="p-10 rounded-2xl bg-soft-white border border-sand/20">
-
-                                    <div className="text-4xl mb-6">{f.icon}</div>
-
-                                    <h3 className="text-xl font-bold font-serif mb-4 text-moss">{f.title}</h3>
-
-                                    <p className="text-sm text-moss/70 leading-relaxed">{f.description}</p>
-
+                {/* 리뷰 섹션 수정 부분 */}
+                <section id="social" className="py-16 bg-soft-white overflow-hidden border-y border-sand/20">
+                    <div className="animate-scroll">
+                        {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                            <div 
+                                key={i} 
+                                className="min-w-[320px] max-w-[320px] min-h-[200px] mx-4 p-8 bg-white text-moss rounded-3xl border-2 border-sand shadow-sm flex flex-col justify-between"
+                            >
+                                <p className="text-sm font-medium leading-relaxed whitespace-pre-wrap italic">
+                                    "{t.content}"
+                                </p>
+                                <div className="mt-4 text-[11px] font-bold text-sand tracking-wider uppercase">
+                                    — {t.author}
                                 </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-                            ))}
+                <ApplicationForm intent={intent} onIntentChange={setIntent} />
+                <Footer />
+            </div>
+        );
+    };
 
-                        </div>
-
-                    </section>
-
-                    <section id="social" className="py-24 bg-moss overflow-hidden">
-
-                        <div className="animate-scroll">
-
-                            {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-
-                                <div className="min-w-[350px] h-[260px] mx-4 p-8 bg-deep-moss text-sand rounded-2xl border border-sand/20 flex flex-col justify-between">
-
-
-                                    <p className="italic mb-4">"{t.content}"</p>
-
-                                    <div className="text-xs opacity-70">— {t.author}</div>
-
-                                </div>
-
-                            ))}
-
-                        </div>
-
-                    </section>
-
-                    <ApplicationForm intent={intent} onIntentChange={setIntent} />
-
-                    <Footer />
-
-                </div>
-
-            );
-
-        };
-
-
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-
-        root.render(<App />);
-
-    </script>
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+</script>
 
 </body>
 
