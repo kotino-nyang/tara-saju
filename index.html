@@ -16,7 +16,52 @@
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>const App = () => {
+    const [intent, setIntent] = useState('life');
+
+    return (
+        <div className="min-h-screen selection:bg-sand selection:text-deep-moss">
+            <Header />
+            <Hero onSetIntent={setIntent} />
+            <ProblemSolution />
+            <SegmentationBridge selectedIntent={intent} onSetIntent={setIntent} />
+
+            <section id="features" className="py-24 px-6 bg-white">
+                <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+                    {FEATURES.map(f => (
+                        <div key={f.id} className="p-10 rounded-2xl bg-soft-white border border-sand/20">
+                            <div className="text-4xl mb-6">{f.icon}</div>
+                            <h3 className="text-xl font-bold font-serif mb-4 text-moss">{f.title}</h3>
+                            <p className="text-sm text-moss/70 leading-relaxed">{f.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <section id="social" className="py-16 bg-soft-white overflow-hidden border-y border-sand/20">
+                <div className="animate-scroll">
+                    {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                        <div
+                            key={i}
+                            className="min-w-[320px] max-w-[320px] min-h-[200px] mx-4 p-8 bg-white text-moss rounded-3xl border-2 border-sand shadow-sm flex flex-col justify-between"
+                        >
+                            <p className="text-sm font-medium leading-relaxed italic">
+                                "{t.content}"
+                            </p>
+                            <div className="mt-4 text-xs opacity-70">
+                                — {t.author}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <ApplicationForm intent={intent} onIntentChange={setIntent} />
+            <Footer />
+        </div>
+    );
+};
+
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -538,7 +583,7 @@ const Footer = () => (
 
         
 
-        const App = () => {
+    
 
             const App = () => {
         const [intent, setIntent] = useState('life');
