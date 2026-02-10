@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ApplicationIntent, FormData } from './types';
 import { TESTIMONIALS, FEATURES } from './constants';
 import { geminiService } from './services/geminiService';
@@ -8,19 +8,22 @@ import { geminiService } from './services/geminiService';
 
 const Header: React.FC = () => (
   <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
-    <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div className="text-moss font-serif text-2xl font-black tracking-widest">TARA SAJU</div>
-      <nav className="hidden md:flex gap-8 text-sm font-medium text-moss/70">
+    {/* justify-between을 제거하고 justify-center로 변경하여 로고를 중앙으로 보냅니다 */}
+    <div className="max-w-7xl mx-auto px-6 py-4 flex justify-center items-center relative">
+      <div className="text-moss font-serif text-3xl md:text-4xl font-black tracking-[0.2em]">TARA SAJU</div>
+      
+      {/* 네비게이션은 우측에 절대 위치로 배치하거나 필요 없으면 삭제 가능합니다 */}
+      <nav className="hidden md:flex gap-8 text-sm font-medium text-moss/70 absolute right-6">
         <a href="#features" className="hover:text-moss transition-colors">핵심 분석</a>
-        <a href="#social" className="hover:text-moss transition-colors">후기</a>
-        <a href="#apply" className="px-4 py-2 bg-moss text-white rounded-full hover:bg-deep-moss transition-colors">리포트 신청</a>
+        <a href="#apply" className="px-4 py-2 bg-moss text-white rounded-full hover:bg-deep-moss transition-colors">신청</a>
       </nav>
     </div>
   </header>
 );
 
 const Hero: React.FC<{ onSetIntent: (intent: ApplicationIntent) => void }> = ({ onSetIntent }) => (
-  <section className="relative h-screen flex items-center justify-center overflow-hidden">
+  /* h-screen을 제거하고 pt(상단 여백)와 pb(하단 여백)를 직접 조절했습니다. */
+  <section className="relative flex flex-col items-center justify-start overflow-hidden pt-40 md:pt-60 pb-20">
     <div className="absolute inset-0 z-0">
       <img 
         src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" 
@@ -33,7 +36,7 @@ const Hero: React.FC<{ onSetIntent: (intent: ApplicationIntent) => void }> = ({ 
     
     <div className="relative z-10 max-w-4xl px-6 text-center">
       <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight animate-fade-in text-moss">
-        요즘, 왜 이렇게 막막한지.<br />
+        요즘 왜 이렇게 잘 안 풀리는지,<br />
         <span className="text-sand drop-shadow-sm">사주 흐름</span>으로 정확히 정리해드립니다.
       </h1>
       <p className="text-lg md:text-xl font-medium mb-10 text-moss/80 max-w-2xl mx-auto leading-relaxed">
@@ -48,27 +51,27 @@ const Hero: React.FC<{ onSetIntent: (intent: ApplicationIntent) => void }> = ({ 
 
       <div className="flex flex-wrap justify-center gap-6 pt-8 border-t border-moss/10">
         <button 
-          onClick={() => { onSetIntent('romance'); window.location.href = '#apply'; }}
+          onClick={() => { onSetIntent('life'); window.location.href = '#bridge'; }}
           className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold"
         >
           <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
           일·돈·미래가 답답해요
         </button>
         <button 
-          onClick={() => { onSetIntent('life'); window.location.href = '#apply'; }}
+          onClick={() => { onSetIntent('romance'); window.location.href = '#bridge'; }}
           className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold"
         >
           <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
           연애·결혼이 궁금해요
         </button>
       </div>
-      <p className="mt-8 text-xs text-moss/50 tracking-widest font-bold">사주를 알면 결정이 쉬워집니다.</p>
     </div>
   </section>
 );
 
 const ProblemSolution: React.FC = () => (
-  <section className="py-24 px-6 bg-soft-white overflow-hidden">
+  /* py-24를 pt-0 pb-24로 변경하여 위 섹션과의 간격을 좁혔습니다. */
+  <section className="pt-0 pb-24 px-6 bg-soft-white overflow-hidden">
     <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
       <div className="flex items-center justify-center p-8 rounded-2xl bg-soft-white border border-sand/20">
         <div className="relative w-full max-w-xs aspect-square flex items-center justify-center">
@@ -83,14 +86,11 @@ const ProblemSolution: React.FC = () => (
         </div>
       </div>
       <div className="relative flex flex-col justify-center">
-        {/* 네모 배경 하얀색, 테두리는 Type B와 동일한 border-sand 적용 */}
         <div className="bg-white border-2 border-sand rounded-3xl p-10 md:p-12 shadow-xl h-full flex flex-col justify-center">
            <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-6 w-fit">SOLUTION</div>
            <h3 className="text-2xl font-serif mb-6 text-moss font-black">정확한 사주 구조 분석</h3>
            <div className="space-y-6 text-moss/80 font-medium leading-relaxed">
-             <p>
-               당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.
-             </p>
+             <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
              <p className="pt-6 border-t border-sand/30">
                타라사주는 추상적인 위로 대신,<br />
                <span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span>
