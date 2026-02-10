@@ -505,28 +505,36 @@
 
 
 const Footer = () => (
+            <footer className="py-12 px-6 bg-deep-moss text-sand/50 border-t border-sand/10">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                        {/* 왼쪽: 브랜드 및 사업자 정보 */}
+                        <div className="text-left">
+                            <div className="font-serif text-xl font-black tracking-widest mb-6 text-sand/80">TARA SAJU</div>
+                            <div className="space-y-1 text-[11px] leading-relaxed">
+                                <p className="text-sand/60 font-bold mb-2">CS & CONTACT</p>
+                                <p>노마릿 (452-01-02701) | 대표 : 고수빈</p>
+                                <p>© 2026 TARA SAJU. All rights reserved.</p>
+                            </div>
+                        </div>
 
-    <footer className="py-12 px-6 bg-deep-moss text-sand/50 text-center border-t border-sand/10">
+                        {/* 오른쪽: 연락처 정보 */}
+                        <div className="text-left md:text-right space-y-1 text-[11px]">
+                            <p>Cs: 010-4648-0046</p>
+                            <p>Contact: binzzz010101@gmail.com</p>
+                        </div>
+                    </div>
 
-        <div className="max-w-7xl mx-auto">
-
-            <div className="font-serif text-xl font-black tracking-widest mb-4 text-sand/80">TARA SAJU</div>
-
-            <p className="text-sm mb-2">© 2026 TARA SAJU. All rights reserved.</p>
-
-            <p className="text-[10px] leading-relaxed max-w-md mx-auto">
-
-                타라사주는 명리학적 데이터를 기반으로 분석을 제공하며, 
-
-                최종적인 삶의 선택과 책임은 본인에게 있습니다.
-
-            </p>
-
-        </div>
-
-    </footer>
-
-);
+                    {/* 하단: 주의사항 */}
+                    <div className="mt-10 pt-8 border-t border-sand/5 text-center">
+                        <p className="text-[10px] leading-relaxed max-w-md mx-auto opacity-50">
+                            타라사주는 명리학적 데이터를 기반으로 분석을 제공하며,<br />
+                            최종적인 삶의 선택과 책임은 본인에게 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        );
 
         
 
