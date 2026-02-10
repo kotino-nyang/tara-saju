@@ -3,10 +3,12 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';">
-    <title>온라인 사주 분석 | 타라사주</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>온라인 사주 분석 | 타라사주</title>
 
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 
@@ -52,7 +54,7 @@
 
         .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .selection\:bg-sand ::selection { background-color: #DBCDB4; color: #2D3629; }
 
@@ -124,86 +126,89 @@
 
         const Header = () => (
     <header className="fixed top-0 left-0 right-0 z-50 bg-soft-white/80 backdrop-blur-md border-b border-sand/30">
-        <div className="max-w-7xl mx-auto px-6 py-2 flex justify-center items-center"> {/* py-4 -> py-2 */}
-            <a href="/">
-                <img 
-                    src="https://i.imgur.com/sdU9nRt.png" 
-                    alt="TARA SAJU" 
-                    className="h-12 md:h-20 w-auto transition-all duration-300 object-contain" // h-16/28 -> h-12/20
-                />
-            </a>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div className="flex items-center">
+                <a href="/">
+                    <img 
+                        src="https://i.imgur.com/sdU9nRt.png" 
+                        alt="TARA SAJU" 
+                        /* h-8에서 h-12(48px) ~ md:h-16(64px)로 키웠습니다. */
+                        className="h-12 md:h-16 w-auto transition-all duration-300 object-contain" 
+                    />
+                </a>
+            </div>
         </div>
     </header>
 );
 
-const Hero = ({ onSetIntent }) => (
-    <section className="relative overflow-hidden pt-24 md:pt-32 pb-0 bg-soft-white">
-        <div className="absolute inset-x-0 top-0 h-[400px] md:h-[500px] z-0"> 
-            <img src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" className="w-full h-full object-cover brightness-110 scale-105" />
-            <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-soft-white"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-4xl px-6 text-center mx-auto">
-            <h1 className="text-2xl md:text-4xl font-serif font-bold mb-4 leading-tight animate-fade-in text-moss">
-                요즘, 왜 이렇게 막막한지.<br /><span className="text-sand drop-shadow-sm">사주 흐름</span>으로 정확히 정리해드립니다.
-            </h1>
-            <p className="text-sm md:text-base font-medium mb-6 text-moss/80 max-w-2xl mx-auto leading-relaxed">
-                타라사주는 달콤한 말로 끝내지 않습니다.<br className="hidden md:block" />
-                당신의 사주 구조로부터 지금 막히는 이유와 열리는 타이밍을 알려드립니다.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <a href="#apply" className="w-full sm:w-auto px-8 py-3 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">내 사주 리포트 신청하기</a>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-6 pt-4 pb-0 border-t border-moss/10 mt-4">
-                <button onClick={() => { onSetIntent('life'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold text-sm">
-                    <span className="w-6 h-6 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-[10px]">↓</span>
-                    일·돈·미래가 답답해요
-                </button>
-                <button onClick={() => { onSetIntent('romance'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold text-sm">
-                    <span className="w-6 h-6 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-[10px]">↓</span>
-                    연애·결혼이 궁금해요
-                </button>
-            </div>
-        </div>
-        <ProblemSolution />
-    </section>
+        const Hero = ({ onSetIntent }) => (
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32 pb-12">
+        <div className="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" className="w-full h-full object-cover brightness-110 scale-105" />
+            <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-soft-white"></div>
+        </div>
+        <div className="relative z-10 max-w-4xl px-6 text-center">
+            <h1 className="text-3xl md:text-5xl font-serif font-bold mb-8 leading-relaxed md:leading-[1.5] animate-fade-in text-moss">
+                요즘, 왜 이렇게 막막한지.<br /><span className="text-sand drop-shadow-sm">사주 흐름</span>으로 정확히 정리해드립니다.
+            </h1>
+            <p className="text-base md:text-lg font-medium mb-10 text-moss/80 max-w-2xl mx-auto leading-relaxed">
+                타라사주는 달콤한 말로 끝내지 않습니다.<br className="hidden md:block" />
+                당신의 사주 구조로부터 지금 막히는 이유와 열리는 타이밍을 알려드립니다.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="#apply" className="w-full sm:w-auto px-8 py-4 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">내 사주 리포트 신청하기</a>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6 pt-8 border-t border-moss/10">
+                <button onClick={() => { onSetIntent('life'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
+                    <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
+                    일·돈·미래가 답답해요
+                </button>
+                <button onClick={() => { onSetIntent('romance'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
+                    <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
+                    연애·결혼이 궁금해요
+                </button>
+            </div>
+        </div>
+    </section>
 );
 
-const ProblemSolution = () => (
-    <div className="mt-8 md:-mt-4 px-6 relative z-20">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-4 items-center">
-            <div className="flex items-center justify-center order-2 md:order-1">
-                <img 
-                    src="https://i.imgur.com/BPYe59t.png" 
-                    alt="사주 구조 분석 데이터" 
-                    className="w-full max-w-[280px] md:max-w-sm rounded-2xl drop-shadow-xl animate-fade-in object-cover" 
-                />
-            </div>
-            
-            <div className="flex flex-col justify-center order-1 md:order-2">
-                <div className="bg-white border-2 border-sand rounded-3xl p-6 md:p-8 shadow-xl">
-                   <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-3">SOLUTION</div>
-                   <h3 className="text-xl font-serif mb-3 text-moss font-black">정확한 사주 구조 분석</h3>
-                   <div className="space-y-3 text-sm text-moss/80 font-medium leading-relaxed">
-                     <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
-                     <p className="pt-3 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+        const ProblemSolution = () => (
+    <section className="pt-4 pb-24 px-6 bg-soft-white overflow-hidden">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
+            {/* 이미지 블록 */}
+            <div className="flex items-center justify-center p-4 rounded-2xl bg-soft-white">
+                <img 
+                    src="https://i.imgur.com/BPYe59t.png" 
+                    alt="사주 구조 분석 데이터" 
+                    className="w-full max-w-sm rounded-2xl drop-shadow-2xl animate-fade-in object-cover" 
+                />
+            </div>
+            
+            <div className="relative flex flex-col justify-center">
+                <div className="bg-white border-2 border-sand rounded-3xl p-10 md:p-12 shadow-xl h-full flex flex-col justify-center">
+                   <div className="inline-block px-3 py-1 bg-sand/20 text-moss text-[10px] font-black tracking-widest rounded-full mb-6 w-fit">SOLUTION</div>
+                   <h3 className="text-2xl font-serif mb-6 text-moss font-black">정확한 사주 구조 분석</h3>
+                   <div className="space-y-6 text-moss/80 font-medium leading-relaxed">
+                     <p>당신의 사주 구조로 무엇이 막는지, 무엇이 열리는지를 분명히 말합니다. 그래서 결정이 쉬워집니다.</p>
+                     <p className="pt-6 border-t border-sand/30">타라사주는 추상적인 위로 대신,<br /><span className="text-moss font-black underline decoration-sand decoration-4 underline-offset-4">명확한 데이터를 제공합니다.</span></p>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
 );
+
 
 
         const SegmentationBridge = ({ selectedIntent, onSetIntent }) => (
-    // py-24를 pt-12 pb-24로 변경 (윗부분 여백 절반 감소)
-    <section id="bridge" className="pt-12 pb-24 px-6 bg-[#F2EDE4]">
+    <section id="bridge" className="py-24 px-6 bg-[#F2EDE4]">
         <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12"> {/* mb-16에서 12로 줄임 */}
+            <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-5xl font-serif mb-4 text-moss">지금 가장 시급한 고민은 무엇인가요?</h2>
-                <p className="text-moss/60">목적에 최적화된 분석 서비스를 만나보세요.</p>
+                <p className="text-moss/60">목적에 최적화된 리포트를 구성해드립니다.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
                 {/* TYPE A */}
@@ -246,81 +251,164 @@ const ProblemSolution = () => (
 
 
         const ApplicationForm = ({ intent, onIntentChange }) => {
-    const [formData, setFormData] = useState({ 
-        name: '', 
-        gender: 'female', 
-        birthDate: '', 
-        birthTime: 'unknown', 
-        intent: intent || 'life' 
-    });
-    const [agree, setAgree] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [formData, setFormData] = useState({ 
+        name: '', 
+        gender: 'female', 
+        birthDate: '', 
+        birthTime: 'unknown', 
+        intent: intent || 'life' 
+    });
+    const [agree, setAgree] = useState(false);
 
-    useEffect(() => { 
-        if (intent) setFormData(prev => ({ ...prev, intent })); 
-    }, [intent]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [preview, setPreview] = useState(null);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(!agree) {
-            alert("개인정보 수집 및 이용에 동의해주세요.");
-            return;
-        }
-        alert(`${formData.name}님의 리포트 신청이 완료되었습니다! 48시간 이내 분석 완료 예정입니다.`);
-    };
+    useEffect(() => { 
+        if (intent) setFormData(prev => ({ ...prev, intent })); 
+    }, [intent]);
 
-    // return 문이 함수 블록 안에 정확히 위치해야 합니다.
-    return (
-        <section id="apply" className="py-24 px-6 bg-soft-white">
-            <div className="max-w-3xl mx-auto">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-serif text-moss mb-4">리포트 신청 (입력 1분)</h2>
-                </div>
-                <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-sand/30 space-y-8">
-                    <div className="flex gap-4">
-                        <button type="button" onClick={() => onIntentChange('life')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'life' ? 'bg-moss text-white border-moss' : 'bg-white border-sand'}`}>종합 사주</button>
-                        <button type="button" onClick={() => onIntentChange('romance')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'romance' ? 'bg-sand text-deep-moss border-sand' : 'bg-white border-sand'}`}>연애 특화</button>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <input required type="text" placeholder="성함" className="p-3 border rounded-xl outline-moss" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                        <select className="p-3 border rounded-xl outline-moss" value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
-                            <option value="female">여성</option><option value="male">남성</option>
-                        </select>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <input required type="date" className="p-3 border rounded-xl outline-moss" value={formData.birthDate} onChange={e => setFormData({...formData, birthDate: e.target.value})} />
-                        <select className="p-3 border rounded-xl outline-moss" value={formData.birthTime} onChange={e => setFormData({...formData, birthTime: e.target.value})}>
-                            <option value="unknown">모름 (00시 기준 분석)</option>
-                            <option value="00:00">자시 (00:00 ~ 01:30)</option>
-                            <option value="02:00">축시 (01:30 ~ 03:30)</option>
-                            <option value="04:00">인시 (03:30 ~ 05:30)</option>
-                            <option value="06:00">묘시 (05:30 ~ 07:30)</option>
-                            <option value="08:00">진시 (07:30 ~ 09:30)</option>
-                            <option value="10:00">사시 (09:30 ~ 11:30)</option>
-                            <option value="12:00">오시 (11:30 ~ 13:30)</option>
-                            <option value="14:00">미시 (13:30 ~ 15:30)</option>
-                            <option value="16:00">신시 (15:30 ~ 17:30)</option>
-                            <option value="18:00">유시 (17:30 ~ 19:30)</option>
-                            <option value="20:00">술시 (19:30 ~ 21:30)</option>
-                            <option value="22:00">해시 (21:30 ~ 23:30)</option>
-                        </select>
-                    </div>
-                    <div className="pt-4 border-t border-sand/20">
-                        <label className="flex items-start gap-3 cursor-pointer group">
-                            <input type="checkbox" required className="mt-1 w-4 h-4 accent-moss" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
-                            <span className="text-sm text-moss/70 leading-relaxed group-hover:text-moss transition-colors">
-                                <span className="font-bold text-moss">[필수]</span> 개인정보 수집 및 이용에 동의합니다.
-                            </span>
-                        </label>
-                    </div>
-                    <button type="submit" disabled={isLoading} className="w-full py-5 bg-moss text-white rounded-full font-black text-lg hover:bg-deep-moss transition-all">
-                        {isLoading ? '분석 중...' : '리포트 신청하기'}
-                    </button>
-                </form>
-            </div>
-        </section>
-    );
-};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!agree) {
+            alert("개인정보 수집 및 이용에 동의해주세요.");
+            return;
+        }
+        // 이메일 발송 대신 일단 알림창만 띄움
+        alert(`${formData.name}님의 리포트 신청이 완료되었습니다! 48시간 이내 분석 완료 예정입니다.`);
+    };
+
+
+            return (
+
+                <section id="apply" className="py-24 px-6 bg-soft-white">
+
+                    <div className="max-w-3xl mx-auto">
+
+                        <div className="text-center mb-12">
+
+                            <h2 className="text-4xl font-serif text-moss mb-4">리포트 신청 (입력 1분)</h2>
+
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-sand/30 space-y-8">
+
+                            <div className="flex gap-4">
+
+                                <button type="button" onClick={() => onIntentChange('life')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'life' ? 'bg-moss text-white border-moss' : 'bg-white border-sand'}`}>종합 사주</button>
+
+                                <button type="button" onClick={() => onIntentChange('romance')} className={`flex-1 p-4 rounded-xl border-2 transition-all ${formData.intent === 'romance' ? 'bg-sand text-deep-moss border-sand' : 'bg-white border-sand'}`}>연애 특화</button>
+
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6">
+
+                                <input required type="text" placeholder="성함" className="p-3 border rounded-xl outline-moss" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+
+                                <select className="p-3 border rounded-xl outline-moss" value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
+
+                                    <option value="female">여성</option><option value="male">남성</option>
+
+                                </select>
+
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6">
+
+                                <input required type="date" className="p-3 border rounded-xl outline-moss" value={formData.birthDate} onChange={e => setFormData({...formData, birthDate: e.target.value})} />
+
+                                <select className="p-3 border rounded-xl outline-moss" value={formData.birthTime} onChange={e => setFormData({...formData, birthTime: e.target.value})}>
+
+                                    <option value="unknown">모름 (00시 기준 분석)</option>
+
+                                    <option value="00:00">자시 (00:00 ~ 01:30)</option>
+
+                                    <option value="02:00">축시 (01:30 ~ 03:30)</option>
+
+                                    <option value="04:00">인시 (03:30 ~ 05:30)</option>
+
+                                    <option value="06:00">묘시 (05:30 ~ 07:30)</option>
+
+                                    <option value="08:00">진시 (07:30 ~ 09:30)</option>
+
+                                    <option value="10:00">사시 (09:30 ~ 11:30)</option>
+
+                                    <option value="12:00">오시 (11:30 ~ 13:30)</option>
+
+                                    <option value="14:00">미시 (13:30 ~ 15:30)</option>
+
+                                    <option value="16:00">신시 (15:30 ~ 17:30)</option>
+
+                                    <option value="18:00">유시 (17:30 ~ 19:30)</option>
+
+                                    <option value="20:00">술시 (19:30 ~ 21:30)</option>
+
+                                    <option value="22:00">해시 (21:30 ~ 23:30)</option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            {/* 개인정보 수집 동의 영역 추가 */}
+
+                            <div className="pt-4 border-t border-sand/20">
+
+                                <label className="flex items-start gap-3 cursor-pointer group">
+
+                                    <input 
+
+                                        type="checkbox" 
+
+                                        required 
+
+                                        className="mt-1 w-4 h-4 accent-moss" 
+
+                                        checked={agree}
+
+                                        onChange={(e) => setAgree(e.target.checked)}
+
+                                    />
+
+                                    <span className="text-sm text-moss/70 leading-relaxed group-hover:text-moss transition-colors">
+
+                                        <span className="font-bold text-moss">[필수]</span> 개인정보 수집 및 이용에 동의합니다. 제공하신 정보는 사주 리포트 생성 및 분석 서비스 제공 목적으로만 사용되며, 그 외 용도로 활용되지 않습니다.
+
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <button type="submit" disabled={isLoading} className="w-full py-5 bg-moss text-white rounded-full font-black text-lg hover:bg-deep-moss transition-all disabled:bg-moss/50">
+
+                                {isLoading ? '분석 중...' : '리포트 신청하기'}
+
+                            </button>
+
+                        </form>
+
+                        {preview && (
+
+                            <div className="mt-12 p-10 bg-white border-2 border-sand rounded-3xl animate-fade-in">
+
+                                <h3 className="text-xl font-serif text-moss text-center mb-4">분석 미리보기</h3>
+
+                                <p className="text-center italic text-moss/80">{preview}</p>
+
+                            </div>
+
+                        )}
+
+                    </div>
+
+                </section>
+
+            );
+
+        };
 
 
 
@@ -366,6 +454,7 @@ const Footer = () => (
             <div className="min-h-screen selection:bg-sand selection:text-deep-moss">
                 <Header />
                 <Hero onSetIntent={setIntent} />
+                <ProblemSolution />
                 <SegmentationBridge selectedIntent={intent} onSetIntent={setIntent} />
 
                 {/* 핵심 분석 섹션 */}
