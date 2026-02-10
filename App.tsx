@@ -68,7 +68,7 @@ const Hero: React.FC<{ onSetIntent: (intent: ApplicationIntent) => void }> = ({ 
 );
 
 const ProblemSolution: React.FC = () => (
-  <section className="py-24 px-6 bg-soft-white overflow-hidden">
+  <section className="py-12 px-6 bg-soft-white overflow-hidden -mt-20 relative z-20">
     <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
       <div className="flex items-center justify-center p-8 rounded-2xl bg-soft-white border border-sand/20">
         <div className="relative w-full max-w-xs aspect-square flex items-center justify-center">
