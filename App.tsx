@@ -20,7 +20,7 @@ const Header: React.FC = () => (
 );
 
 const Hero: React.FC<{ onSetIntent: (intent: ApplicationIntent) => void }> = ({ onSetIntent }) => (
-  <section className="relative min-h-[85vh] py-20 flex items-center justify-center overflow-hidden">
+  <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
     <div className="absolute inset-0 z-0">
       <img 
         src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" 
@@ -36,10 +36,20 @@ const Hero: React.FC<{ onSetIntent: (intent: ApplicationIntent) => void }> = ({ 
         요즘, 왜 이렇게 막막한지.<br />
         <span className="text-sand drop-shadow-sm">사주 흐름</span>으로 정확히 정리해드립니다.
       </h1>
-      <p className="text-lg md:text-xl font-medium mb-10 text-moss/80 max-w-2xl mx-auto leading-relaxed">
+      <p className="text-lg md:text-xl font-medium mb-8 text-moss/80 max-w-2xl mx-auto leading-relaxed">
         타라사주는 달콤한 말로 끝내지 않습니다. 당신의 사주 구조로부터 지금 막히는 이유와 열리는 타이밍을 알려드립니다.
       </p>
       
+      {/* ▼▼▼ 요청하신 이미지 추가 부분 ▼▼▼ */}
+      <div className="mb-10 flex justify-center">
+        <img 
+          src="https://images.unsplash.com/photo-1507643179173-39db74c48f10?q=80&w=1200&auto=format&fit=crop" 
+          alt="Calm flow nature" 
+          className="rounded-2xl shadow-xl w-full max-w-lg h-64 object-cover opacity-90 hover:scale-[1.02] transition-transform duration-700"
+        />
+      </div>
+      {/* ▲▲▲ 이미지 추가 끝 ▲▲▲ */}
+
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
         <a href="#apply" className="w-full sm:w-auto px-8 py-4 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
           내 사주 리포트 신청하기
