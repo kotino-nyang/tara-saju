@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TARA SAJU | 타라사주</title>
+    <title>TARA SAJU | 타라사주 통합 랜딩페이지</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,51 +30,40 @@
     <style>
         body {
             font-family: 'Pretendard', sans-serif;
+            scroll-behavior: smooth;
             background-color: #F9F7F2;
-            color: #2D3629;
-            margin: 0;
         }
-        h1, h2, h3 { font-family: 'Noto Serif KR', serif; }
+        h1, h2, h3, .font-serif {
+            font-family: 'Noto Serif KR', serif;
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(219, 205, 180, 0.5);
+        }
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(219, 205, 180, 0.5);
+            border: 1px solid rgba(219, 205, 180, 0.3);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+            animation: scroll 40s linear infinite;
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
-
-    <div class="max-w-md w-full glass-card p-10 rounded-3xl shadow-2xl text-center">
-        <h1 class="text-4xl font-black mb-2 text-moss tracking-tight">TARA SAJU</h1>
-        <p class="text-sand font-semibold mb-10 tracking-widest">운명의 흐름을 읽는 시간</p>
-        
-        <div class="space-y-6 text-left">
-            <div>
-                <label class="block text-sm font-bold text-deep-moss mb-2">성함</label>
-                <input type="text" id="userName" class="w-full p-4 bg-white/50 border border-sand rounded-xl focus:outline-none focus:ring-2 focus:ring-moss" placeholder="성함을 입력하세요">
-            </div>
-            <div>
-                <label class="block text-sm font-bold text-deep-moss mb-2">생년월일</label>
-                <input type="date" id="userBirth" class="w-full p-4 bg-white/50 border border-sand rounded-xl focus:outline-none focus:ring-2 focus:ring-moss">
-            </div>
-            
-            <button onclick="startAnalysis()" class="w-full bg-moss text-white py-5 rounded-xl font-black text-lg hover:bg-deep-moss transition-all transform hover:scale-[1.02] shadow-lg mt-8">
-                사주 분석하기
-            </button>
-        </div>
-        
-        <p class="mt-10 text-xs text-sand/80">© 2026 TARA SAJU. 프리미엄 사주 서비스</p>
-    </div>
-
-    <script>
-        function startAnalysis() {
-            const name = document.getElementById('userName').value;
-            if(!name) {
-                alert('성함을 입력해주세요.');
-                return;
-            }
-            alert(name + '님의 사주 데이터를 분석하기 위해 서버에 연결 중입니다...');
-        }
-    </script>
+<body>
+    <div id="root"></div>
 </body>
 </html>
