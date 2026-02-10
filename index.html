@@ -138,12 +138,12 @@
     </header>
 
             const Hero = ({ onSetIntent }) => (
-    /* items-center 제거, min-h 제거, pb-0으로 하단 여백 박멸 */
-    <section className="relative flex flex-col justify-start overflow-hidden pt-40 md:pt-52 pb-0">
+    /* h-screen이나 min-h-[80vh]를 절대 넣지 마세요! */
+    <section className="relative overflow-hidden pt-52 md:pt-64 pb-0 bg-soft-white">
         <div className="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1544207592-72eeFA17aa35?q=80&w=2072&auto=format&fit=crop" className="w-full h-full object-cover brightness-110 scale-105" />
             <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-soft-white"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-soft-white"></div>
         </div>
         <div className="relative z-10 max-w-4xl px-6 text-center mx-auto">
             <h1 className="text-3xl md:text-5xl font-serif font-bold mb-8 leading-relaxed md:leading-[1.5] animate-fade-in text-moss">
@@ -157,8 +157,8 @@
                 <a href="#apply" className="w-full sm:w-auto px-8 py-4 bg-moss text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">내 사주 리포트 신청하기</a>
             </div>
             
-            {/* 버튼 영역 하단 패딩을 0으로 만들어 다음 섹션과 연결 */}
-            <div className="flex flex-wrap justify-center gap-6 pt-8 pb-4 border-t border-moss/10">
+            {/* 버튼 하단 패딩(pb)을 8로 아주 낮게 설정 */}
+            <div className="flex flex-wrap justify-center gap-6 pt-8 pb-8 border-t border-moss/10">
                 <button onClick={() => { onSetIntent('life'); window.location.href = '#bridge'; }} className="flex items-center gap-2 text-moss/70 hover:text-moss transition-colors group font-semibold">
                     <span className="w-8 h-8 rounded-full border border-moss/30 flex items-center justify-center group-hover:border-moss group-hover:bg-moss/5 transition-all text-xs">↓</span>
                     일·돈·미래가 답답해요
@@ -174,10 +174,10 @@
 
 
         const ProblemSolution = () => (
-    /* pt-0으로 위 섹션과 완전히 밀착 */
     <section className="pt-0 pb-24 px-6 bg-soft-white overflow-hidden">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center"> {/* gap 축소 */}
-            <div className="flex items-center justify-center p-0 rounded-2xl"> {/* p-4 제거 */}
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            {/* 이미지 블록의 여백도 제거 */}
+            <div className="flex items-center justify-center p-0">
                 <img 
                     src="https://i.imgur.com/BPYe59t.png" 
                     alt="사주 구조 분석 데이터" 
