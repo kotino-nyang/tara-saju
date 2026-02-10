@@ -299,6 +299,48 @@ const Footer = () => (
             );
         };
 
+        const Footer: React.FC = () => (
+  <footer className="bg-soft-white py-16 px-6 border-t border-sand/20 text-moss/70">
+    <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-12 text-sm">
+      <div className="space-y-6">
+        <div className="text-moss font-serif text-2xl font-black">TARA SAJU</div>
+        <div className="space-y-2">
+          <p className="font-bold text-moss text-base">노마릿</p>
+          <p><span className="font-semibold">대표 :</span> 고수빈</p>
+          <p>
+            <span className="font-semibold">주소 :</span>
+            경기도 용인시 처인구 포곡읍 포곡로 72, 2층 204호 C555(대두빌딩)
+          </p>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h4 className="font-bold text-moss text-base tracking-widest">
+          CS & CONTACT
+        </h4>
+        <div className="space-y-3">
+          <p>
+            <span className="font-semibold">CS :</span>
+            <span className="text-moss font-bold"> 010-4648-0046</span>
+          </p>
+          <p>
+            <span className="font-semibold">Contact :</span>
+            binzzz010101@gmail.com
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* 🔽 최하단 추가 영역 */}
+    <div className="mt-16 pt-6 border-t border-sand/20 text-xs text-center text-moss/50 leading-relaxed">
+      <p>노마릿 | 대표 고수빈</p>
+      <p>경기도 용인시 처인구 포곡읍 포곡로 72, 2층 204호 C555(대두빌딩)</p>
+      <p>CS 010-4648-0046 · binzzz010101@gmail.com</p>
+    </div>
+  </footer>
+);
+
+        
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
